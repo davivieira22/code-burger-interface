@@ -1,7 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup"
+import { useUser } from "../../hooks/UserContext";
+import { yupResolver } from "@hookform/resolvers/yup";
+import api from "../../services/Api";
+import { toast } from "react-toastify";
 import {
   Container,
   ContainerLeft,
@@ -10,22 +13,24 @@ import {
   LoginImg,
   A,
   P,
-  ErrorsInput
+  ErrorsInput,
 } from "./styles";
-import { Botao } from "../../conponents/botao";
+import { Botao } from "../../components/botao";
 
 import loginImg from "../../assets/logo.png";
 
 export const Login = () => {
+const users =useUser()
+
+console.log(users)
+
   const schema = Yup.object().shape({
-    Email: Yup
-    .string()
-    .email("erro nas caracteristcas do email  ")
-    .required("email e obrigatorio "),
-    password: Yup
-    .string()
-    .min(6 ,"A senha precisa ter no minimo 6 caracteres ")
-    .required("a senha e obrigatorio "),
+    email: Yup.string()
+      .email("erro nas caracteristcas do email  ")
+      .required("email e obrigatorio "),
+    password: Yup.string()
+      .min(6, "A senha precisa ter no minimo 6 caracteres ")
+      .required("a senha e obrigatorio "),
   });
 
   const {
@@ -34,33 +39,52 @@ export const Login = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
-  })
+  });
 
- 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (Data) => {
+    const response = await toast.promise(
+      api.post("session", {
+        email: Data.email,
+        password: Data.password,
+      }),
+      {
+        pending: "verificando dados ",
+        success: "seja bem vindo(a) ao code-burger",
+        error: "algo esta errado verifigue seus dados",
+      }
+    );
+
+    console.log(response);
+  };
 
   return (
     <Container>
       <ContainerLeft />
 
-      <ContainerRight noValidate  onSubmit={handleSubmit(onSubmit)}>
+      <ContainerRight noValidate onSubmit={handleSubmit(onSubmit)}>
         <LoginImg src={loginImg} />
         <h1>login</h1>
 
         <ContainerInput>
           <label>nome </label>
-          <input type="email" {...register("Email")}
-          error={errors?.Email.messagel} />
+          <input
+            type="email"
+            {...register("email")}
+            error={errors?.email?.message}
+          />
 
-          <ErrorsInput>{errors?.Email.message}</ErrorsInput>
+          <ErrorsInput>{errors?.email?.message}</ErrorsInput>
         </ContainerInput>
 
         <ContainerInput>
           <label>senha</label>
-          <input type="password" {...register("password")}
-           error={errors?.password.messagel}/>
+          <input
+            type="password"
+            {...register("password")}
+            error={errors?.password?.message}
+          />
 
-          <ErrorsInput>{errors?.password.message}</ErrorsInput>
+          <ErrorsInput>{errors?.password?.message}</ErrorsInput>
         </ContainerInput>
         <Botao type="submit">entrar</Botao>
 

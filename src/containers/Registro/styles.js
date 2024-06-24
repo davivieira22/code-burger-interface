@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import logoEsquerda from "../../assets/backgrald.png";
+import logoEsquerda from "../../assets/imgCadastro.png";
 
 export const Container = styled.div`
   display: flex;
   width: 100vw;
-  height: 100vh;
+  height: 150vh;
 `;
 export const LoginImg = styled.img`
   width: 60%;
@@ -14,14 +14,14 @@ export const LoginImg = styled.img`
 export const ContainerLeft = styled.div`
   background: url(${logoEsquerda});
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   min-width: 50%;
   background-size: cover;
   background-position: center;
 `;
 export const ContainerRight = styled.form`
   width: 100vw;
-  height: 100vh;
+  height:100%;
   min-width: 50%;
   display: flex;
   flex-direction: column;
@@ -46,7 +46,7 @@ export const ContainerInput = styled.div`
   align-items: center;
   width: 100%;
   height: 10%;
-  margin-top: 39px;
+  margin-top:10px;
 
   label {
     color: #ffff;
@@ -58,7 +58,7 @@ export const ContainerInput = styled.div`
   input {
     width: 50%;
     height: 38px;
-    border: ${props=> props.error ? '2px solid #cc1717' : 'none'};
+    border: ${props=> props.errors ? '2px solid #cc1717' : 'none'};
     border-radius: 5px;
   }
 `;
