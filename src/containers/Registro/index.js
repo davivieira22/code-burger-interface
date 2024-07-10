@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../services/Api";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import {
   Container,
@@ -10,7 +12,7 @@ import {
   ContainerRight,
   ContainerInput,
   LoginImg,
-  A,
+ 
   P,
   ErrorsInput,
 } from "./styles";
@@ -20,6 +22,8 @@ import loginImg from "../../assets/logo.png";
 import { toast } from "react-toastify";
 
 export const Registro = () => {
+const navegate =useNavigate()
+
   const schema = Yup.object().shape({
     name: Yup.string("o nome e obrigatiro").required("o nome e obrigatorio"),
 
@@ -57,6 +61,9 @@ export const Registro = () => {
         { validateStatus: () => true }
       );
       if (status === 201 || status === 200) {
+        setTimeout(() => {
+          navegate('/login')
+        },2000);
         toast.success("cadastro criado com sucesso");
       } else if (status === 409) {
         toast.error(" email ja cadastrado fazer logion ");
@@ -122,7 +129,8 @@ export const Registro = () => {
         <Botao type="submit">registra</Botao>
 
         <P>
-          se ja possui conta!<A> clique aqui</A>
+          se ja possui conta!<Link style={{color: '#9758a6'}}
+           to='/login'> clique aqui</Link>
         </P>
       </ContainerRight>
     </Container>

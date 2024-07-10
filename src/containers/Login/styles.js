@@ -69,8 +69,8 @@ export const P = styled.p`
   line-height: 17px;
   color: #ffff;
 `;
-export const A = styled.a`
-  color: #9758a6;
+export const Link = styled.link`
+  color:#cc1717;
 `;
 export const ErrorsInput = styled.p`
   font-style: normal;

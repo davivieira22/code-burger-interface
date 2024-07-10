@@ -5,25 +5,28 @@ import { useUser } from "../../hooks/UserContext";
 import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../services/Api";
 import { toast } from "react-toastify";
+import { Link ,} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Container,
   ContainerLeft,
   ContainerRight,
   ContainerInput,
   LoginImg,
-  A,
+
   P,
   ErrorsInput,
+
 } from "./styles";
 import { Botao } from "../../components/botao";
 
-import loginImg from "../../assets/logo.png";
+import loginImg from "../../assets/codeburgerlogo.png";
 
 export const Login = () => {
-const users =useUser()
-
-console.log(users)
-
+  const navegate = useNavigate();
+  
+  const { putUserData} = useUser();
+  
   const schema = Yup.object().shape({
     email: Yup.string()
       .email("erro nas caracteristcas do email  ")
@@ -42,19 +45,27 @@ console.log(users)
   });
 
   const onSubmit = async (Data) => {
-    const response = await toast.promise(
+    const { data } = await toast.promise(
       api.post("session", {
         email: Data.email,
         password: Data.password,
       }),
       {
         pending: "verificando dados ",
-        success: "seja bem vindo(a) ao code-burger",
+        success:{
+          render(){
+            setTimeout(()=>{
+              navegate('/')
+
+            },2000)
+            return 'seja bem-vindo ao code-burger'
+          }
+        },
         error: "algo esta errado verifigue seus dados",
       }
     );
-
-    console.log(response);
+    putUserData(data);
+    
   };
 
   return (
@@ -89,7 +100,8 @@ console.log(users)
         <Botao type="submit">entrar</Botao>
 
         <P>
-          nao possui conta?<A> clique aqui</A>
+          nao possui conta?<Link style={{color:'#9758a6'
+          }} to="/cadastro"> clique aqui</Link>
         </P>
       </ContainerRight>
     </Container>
