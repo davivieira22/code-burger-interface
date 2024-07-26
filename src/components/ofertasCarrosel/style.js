@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background-color: #efefef;
+  background-color: #ffffffff;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,19 +25,30 @@ export const Container = styled.div`
     color: #efefef;
   }
 `;
-export const CategoryImg = styled.img`
-  width: 50%;
+export const OfferImg = styled.img`
+  width: 30%%;
   margin-left: 10%;
 `;
-export const ContaineItems = styled.div`
+export const OfferItems = styled.div`
   display: flex;
   flex-direction: column;
+  gap:10px;
+  margin-left: 30px;
+  p{
+    font-style:normal;
+    font-weight:bold;
+    font-size:22px;
+    line-height:120%;
+    color:#424242;
+  }
 `;
-export const ImgCategory = styled.img`
-  width: 200px;
+export const OfferImagem = styled.img`
+  width: 80%;
   border-radius: 10px;
+  margin-bottom:16px;
+ 
 `;
-export const Button = styled.button`
+export const OfferButton = styled.button`
   width: 100%;
   height: 50px;
   border-radius: 10px;
