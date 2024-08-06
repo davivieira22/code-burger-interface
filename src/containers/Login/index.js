@@ -7,6 +7,7 @@ import api from "../../services/Api";
 import { toast } from "react-toastify";
 import { Link ,} from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { Botao } from "../../components";
 import {
   Container,
   ContainerLeft,
@@ -18,7 +19,7 @@ import {
   ErrorsInput,
 
 } from "./styles";
-import { Botao } from "../../components/botao";
+
 
 import loginImg from "../../assets/codeburgerlogo.png";
 

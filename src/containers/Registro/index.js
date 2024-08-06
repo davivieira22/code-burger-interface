@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../services/Api";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
+import { Botao } from "../../components";
 import {
   Container,
   ContainerLeft,
@@ -16,7 +16,7 @@ import {
   P,
   ErrorsInput,
 } from "./styles";
-import { Botao } from "../../components/botao";
+
 
 import loginImg from "../../assets/logo.png";
 import { toast } from "react-toastify";

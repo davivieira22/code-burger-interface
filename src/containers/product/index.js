@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProductLogo from "../../assets/LogoProduct.png";
-import {CardProduct} from "../../components/cardProduct";
+import { formatCurrency } from "../../utils/formatCurrency";
+import { CardProduct } from "../../components";
 import {
   Container,
   ProductsImg,
@@ -12,9 +13,9 @@ import api from "../../services/Api";
 
 export const Products = () => {
   const [categories, setCategories] = useState([]);
-  const [activeCategory, setActiveCategory] = useState(0);
-  const [product, setProduct] = useState(0);
-
+  const [activeCategory, setActiveCategory] = useState([]);
+  const [product, setProduct] = useState([]);
+  const [filterRedProduct, setFilteredProduct] = useState([]);
   useEffect(() => {
     async function loadCategorias() {
       const { data } = await api.get("categories");
@@ -25,13 +26,34 @@ export const Products = () => {
     }
 
     async function loadProducts() {
-      const { data } = await api.get("products");
-     
-    setProduct(data)
+      const { data: allProduct } = await api.get("products");
+
+      const newProduct = allProduct.map((product) => {
+        return { ...product, formatedPrice: formatCurrency(product.price) };
+      });
+      setProduct(newProduct);
     }
     loadProducts();
     loadCategorias();
   }, []);
+
+  useEffect(()=>{
+    if(activeCategory===0){
+      setFilteredProduct(product)
+    }
+    else{   const newFilter= product.filter(
+      products => products.category_id === activeCategory)
+
+    
+
+    setFilteredProduct(newFilter)
+  }
+
+   
+  }, [activeCategory,product])
+
+ 
+
   return (
     <Container>
       <ProductsImg src={ProductLogo} alt="logo da Product" />
@@ -52,8 +74,8 @@ export const Products = () => {
       </CategoriesMenu>
 
       <ProductsContainer>
-        {product &&
-          product.map(product => (
+        {filterRedProduct &&
+         filterRedProduct.map((product) => (
             <CardProduct key={product.id} product={product} />
           ))}
       </ProductsContainer>

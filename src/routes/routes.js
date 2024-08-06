@@ -1,9 +1,6 @@
 import {createBrowserRouter}from 'react-router-dom';
-import {Login} from '../containers/Login';
-import {Registro} from '../containers/Registro';
-import {Home}from '../containers/Home';
 import PrivateRoute from './private-route'
-import { Products } from '../containers/product';
+import {Home,Login,Registro,Products,Cart} from '../containers';
 
 
 export const router = createBrowserRouter([
@@ -36,6 +33,12 @@ export const router = createBrowserRouter([
         path:'/produtos',
 
         element:<Products/>,
+
+    },
+     {
+        path:'/carinho',
+
+        element:<Cart/>,
 
     },
   

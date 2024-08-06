@@ -4,11 +4,13 @@ export const Container = styled.div`
 
 background-color:#ffffff;
 box-shadow:0px  38px 68px rgba(57 ,57 ,57, 0,1);
-border-radius:40px;
+border-radius:45px;
 display:flex;
-gap:12px;
-padding: 16px;
+gap:15px;
+padding: 18px;
+
 div{
+  width:80%;
   display:flex;
   flex-direction: column;
   justify-content: space-between;
@@ -17,7 +19,7 @@ div{
 `;
 export const ImageProducts = styled.img`
   width: 150px;
-  border-radius:6px;
+  border-radius:15px;
 `;
 export const ProductName = styled.p`
   font-style: normal;
@@ -33,5 +35,6 @@ export const ProductPrice = styled.p`
   line-height: 21px;
   text-align: center;
   color: #000000;
-  margin-top: 30px;
+  margin-right: 90%;
+  
 `;

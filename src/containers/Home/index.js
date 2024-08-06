@@ -1,8 +1,8 @@
 import React from "react";
 import HomeLogo from "../../assets/logo.png";
 import {Container,HomeImg} from "./styles";
-import { CategoryCarousel } from "../../components/CategoryCarousel";
-import {OffersCarosel} from "../../components/ofertasCarrosel"
+import { CategoryCarousel,OffersCarosel } from "../../components";
+
 export const Home = () => {
   return (
     <Container>

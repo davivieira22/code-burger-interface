@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export const Container =styled.div`
 background: #e5e5e5;
+min-height: 100vh;
 
 
  `
@@ -30,6 +31,10 @@ background: #e5e5e5;
  `
  export  const ProductsContainer=styled.div`
  display:grid;
- grid-template-columns:1fr 1fr 1fr;
+ grid-template-columns:repeat(3,30%);
+ gap:15px;
+ padding:45px;
+ 
+
  
  `
