@@ -1,16 +1,23 @@
 import React from "react";
-import {Route, redirect } from "react-router-dom";
+import {Route,redirect } from "react-router-dom";
 import PropTypes from 'prop-types'
+
  
 
 async function PrivateRoute ({element,...rest}) {
-    const user = await localStorage.getUser('codeburguer:userData')
+    const user = await localStorage.getItem('codeburguer:userData')
     
 
     if(!user){
-        return redirect("/login") 
+        return   redirect("/login")
     }
-    return <Route {...rest} element={element}/>
+    return (
+         <>
+       
+    <Route {...rest} element={element}/>
+    
+    </>
+    )
 
     
 

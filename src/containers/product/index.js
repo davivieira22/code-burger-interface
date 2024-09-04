@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProductLogo from "../../assets/LogoProduct.png";
 import { formatCurrency } from "../../utils/formatCurrency";
-import { CardProduct } from "../../components";
+import { CardProduct ,Header} from "../../components";
 import {
   Container,
   ProductsImg,
@@ -11,7 +11,10 @@ import {
 } from "./styles";
 import api from "../../services/Api";
 
-export const Products = () => {
+export const Products = (props) => {
+console.log(props)
+
+
   const [categories, setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState([]);
   const [product, setProduct] = useState([]);
@@ -56,6 +59,7 @@ export const Products = () => {
 
   return (
     <Container>
+      <Header/>
       <ProductsImg src={ProductLogo} alt="logo da Product" />
       <CategoriesMenu>
         {categories &&

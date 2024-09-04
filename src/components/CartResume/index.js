@@ -3,9 +3,12 @@ import { Botao } from "../botao";
 import { Container } from "./styles";
 import { formatCurrency } from "../../utils/formatCurrency";
 import { useCart } from "../../hooks/CartContext";
+import api from "../../services/Api"
+import {toast} from "react-toastify"
+
 export const CartResume = () => {
-  const [ finalPrice, setFinalPrice ] = useState(0);
-  const   [deliverytex] = useState(5);
+  const [finalPrice, setFinalPrice] = useState(0);
+  const [deliverytex] = useState(5);
   const { cartProducts } = useCart();
 
   useEffect(() => {
@@ -13,8 +16,25 @@ export const CartResume = () => {
       return current.price * current.quantity + acc;
     }, 0);
 
-    setFinalPrice(sumAllItems );
+    setFinalPrice(sumAllItems);
   }, [cartProducts, deliverytex]);
+
+const submitOrder = async () =>{
+  const order = cartProducts.map(product => {
+    return { id:product.id , quantity:product.quantity }
+  })
+
+  await toast.promise(  api.post("orders", { products: order }),{
+    pending:"enviando pedido....",
+    success:"seu pedido foi enviado ",
+    error:"erro no sistema tente outra vez"
+  })
+  
+  
+  
+
+}
+ 
 
   return (
     <div>
@@ -30,8 +50,8 @@ export const CartResume = () => {
           <p>Total</p>
           <p>{formatCurrency(finalPrice + deliverytex)}</p>
         </div>
-        <Botao style={{ width: "100%", margintop: "30px" }}>
-          finalizar pedido{" "}
+        <Botao  style={{ width: "100%", margintop: "30px" }}  onClick= {submitOrder}  >
+          finalizar pedido
         </Botao>
       </Container>
     </div>

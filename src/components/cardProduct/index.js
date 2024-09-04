@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useCart } from "../../hooks/CartContext";
+import { useNavigate } from "react-router-dom";
 import {
   Container,
   ImageProducts,
@@ -13,7 +14,7 @@ import {Botao}  from "../botao"
 
 export const CardProduct = ({ product }) => {
   const {putProductInCart}=useCart()
-
+  const Navigate = useNavigate();
 
   return (
     <Container>
@@ -21,7 +22,9 @@ export const CardProduct = ({ product }) => {
       <div>
       <ProductName>{product.name}</ProductName>
       <ProductPrice>{product.formatedPrice}</ProductPrice>
-      <Botao onClick={()=> putProductInCart(product)} style={ {width:'80%'}}>Adicionar</Botao>
+      <Botao onClick={()=> {putProductInCart(product)
+          Navigate("/carinho")
+      }} style={ {width:'80%'}}>Adicionar</Botao>
       </div>
     </Container>
 

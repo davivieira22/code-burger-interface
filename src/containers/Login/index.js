@@ -23,6 +23,7 @@ import {
 
 import loginImg from "../../assets/codeburgerlogo.png";
 
+
 export const Login = () => {
   const navegate = useNavigate();
   
@@ -45,27 +46,34 @@ export const Login = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = async (Data) => {
+  const onSubmit = async (clientData) => {
     const { data } = await toast.promise(
       api.post("session", {
-        email: Data.email,
-        password: Data.password,
+        email: clientData.email,
+        password: clientData.password,
+     
       }),
       {
         pending: "verificando dados ",
-        success:{
-          render(){
-            setTimeout(()=>{
-              navegate('/')
-
-            },2000)
-            return 'seja bem-vindo ao code-burger'
-          }
-        },
+        success:'seja bem-vindo ao code-burger',
         error: "algo esta errado verifigue seus dados",
       }
     );
+
     putUserData(data);
+    console.log(data)
+
+    setTimeout(()=>{
+
+      if(data.admin){ 
+      
+        navegate('/pedidos')
+      } 
+      else{
+         navegate('/')}
+     
+
+    },2000)
     
   };
 

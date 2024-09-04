@@ -1,6 +1,6 @@
 import {createBrowserRouter}from 'react-router-dom';
 import PrivateRoute from './private-route'
-import {Home,Login,Registro,Products,Cart} from '../containers';
+import {Home,Login,Registro,Products,Cart,Admin} from '../containers';
 
 
 export const router = createBrowserRouter([
@@ -17,7 +17,14 @@ export const router = createBrowserRouter([
         
                 element:<Registro/>,
         
-            },
+            },     
+            { 
+                PrivateRoute,
+                    path:'/pedidos',
+            
+                    element:<Admin/>,
+            
+                },
             
             
          
@@ -42,6 +49,8 @@ export const router = createBrowserRouter([
 
     },
   
+   
+       
  
 
 
