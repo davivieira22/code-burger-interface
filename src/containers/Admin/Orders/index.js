@@ -81,7 +81,7 @@ export const Orders = (Props) => {
               {status.label}
             </LinkMenu>
           ))}
-      </Menu>
+      </Menu >
 
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
