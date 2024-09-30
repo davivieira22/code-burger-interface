@@ -14,11 +14,12 @@ import status from "./order-status";
 import { ContainerAdmin, Menu, LinkMenu } from "./style";
 import api from "../../../services/Api";
 
-export const Orders = () => {
+export const Orders = (Props) => {
+  console.log(Props)
   const [orders, setOrders] = useState([]);
   const [filterredorders, setFilterRedOrders] = useState([]);
   const [rows, setRows] = useState([]);
-  const [activeStatus, setActiveStaus] = useState([]);
+  const [activeStatus, setActiveStatus] = useState(1);
 
   useEffect(() => {
     const loadOrders = async () => {
@@ -64,7 +65,7 @@ export const Orders = () => {
       const newOrder = orders.filter((order) => order.status === status.value);
       setFilterRedOrders(newOrder);
     }
-    setActiveStaus(status.id);
+    setActiveStatus(status.id);
   };
 
   return (

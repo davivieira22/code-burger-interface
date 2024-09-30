@@ -12,7 +12,7 @@ import {
 import api from "../../services/Api";
 
 export const Products = (props) => {
-console.log(props)
+
 
 
   const [categories, setCategories] = useState([]);

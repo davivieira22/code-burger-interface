@@ -26,7 +26,7 @@ export const Container = styled.div`
   }
 `;
 export const OfferImg = styled.img`
-  width: 30%%;
+  width:30%%;
   margin-left: 10%;
 `;
 export const OfferItems = styled.div`
