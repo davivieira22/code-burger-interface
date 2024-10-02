@@ -17,8 +17,8 @@ import {
  
 } from "./styles";
 
-export const ListProducts = (props) => {
-console.log(props)
+export const ListProducts = () => {
+
 const[products,setProducts]=useState([])
  useEffect(()=>{
 
@@ -52,7 +52,7 @@ const[products,setProducts]=useState([])
           </TableRow>
         </TableHead>
         <TableBody>
-          {products.map((product) => (
+          {products.map(product => (
             <TableRow
               key={product.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

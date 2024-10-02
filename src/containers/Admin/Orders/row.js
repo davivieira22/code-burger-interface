@@ -111,7 +111,7 @@ export const Row = ({ row,orders,setOrders }) => {
 
 Row.propTypes = {
   orders: PropTypes.array,
- 
+ setOrders:PropTypes.func,
   row: PropTypes.shape({
     name: PropTypes.string.isRequired,
     orderId: PropTypes.string.isRequired,

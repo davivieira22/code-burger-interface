@@ -14,8 +14,8 @@ import status from "./order-status";
 import { ContainerAdmin, Menu, LinkMenu } from "./style";
 import api from "../../../services/Api";
 
-export const Orders = (Props) => {
-  console.log(Props)
+export const Orders = () => {
+ 
   const [orders, setOrders] = useState([]);
   const [filterredorders, setFilterRedOrders] = useState([]);
   const [rows, setRows] = useState([]);
@@ -23,7 +23,7 @@ export const Orders = (Props) => {
 
   useEffect(() => {
     const loadOrders = async () => {
-      const { data } = await api.get("orders");
+      const { data } = await api.get("/orders")
 
       setOrders(data);
       setFilterRedOrders(data);
@@ -56,7 +56,7 @@ export const Orders = (Props) => {
       setFilterRedOrders(newFilterRedOrder);}
    
 
-  },[orders]);
+  },[activeStatus,orders]);
 
   const handleStatus = (status) => {
     if (status.id === 1) {

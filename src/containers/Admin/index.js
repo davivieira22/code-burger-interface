@@ -1,10 +1,10 @@
 import React from 'react'
 import {ContainerAdmin,ContainerItems} from './style'
-import { Orders } from './Orders'
+// import { Orders } from './Orders'
 import{SideMenu} from '../../components'
 import {ListProducts} from './ListProducts'
 import PropTypes from 'prop-types'
-import paths from '../../constants/paths'
+// import paths from '../../constants/paths'
 
 export const Admin = (props) =>{
 
@@ -14,6 +14,7 @@ export const Admin = (props) =>{
     return(
    
         <ContainerAdmin>
+
                  <SideMenu/>
                  <ContainerItems> 
                     

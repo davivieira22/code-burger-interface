@@ -61,7 +61,7 @@ export const Login = () => {
     );
 
     putUserData(data);
-    console.log(data)
+ 
 
     setTimeout(()=>{
 
